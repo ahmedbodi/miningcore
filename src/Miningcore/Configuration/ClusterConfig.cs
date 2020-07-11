@@ -182,6 +182,15 @@ namespace Miningcore.Configuration
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, BitcoinNetworkParams> Networks { get; set; }
+
+        [JsonProperty("hasAccumulatorCheckpoint")]
+        public bool HasAccumulatorCheckpoint { get; set; }
+
+        [JsonProperty("hasTxTime")]
+        public bool HasTxTime { get; set; }
+
+        [JsonProperty("hasBlockSignature")]
+        public bool HasBlockSignature { get; set; }
     }
 
     public enum EquihashSubfamily

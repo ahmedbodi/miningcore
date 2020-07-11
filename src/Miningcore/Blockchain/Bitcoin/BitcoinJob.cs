@@ -50,6 +50,7 @@ namespace Miningcore.Blockchain.Bitcoin
         protected bool isPoS;
         protected string txComment;
         protected PayeeBlockTemplateExtra payeeParameters;
+        protected AccumulatorCheckpointExtra accumulatorCheckpointExtra;
 
         protected Network network;
         protected IDestination poolAddressDestination;
@@ -124,8 +125,8 @@ namespace Miningcore.Blockchain.Bitcoin
                 // version
                 bs.ReadWrite(ref txVersion);
 
-                // // timestamp for POS coins
-                if(isPoS && poolConfig.UseP2PK)
+                // Some coins mainly POS ones have a tx time
+                if (coin.HasTxTime)
                 {
                     var timestamp = BlockTemplate.CurTime;
                     bs.ReadWrite(ref timestamp);
@@ -326,9 +327,7 @@ namespace Miningcore.Blockchain.Bitcoin
             if(versionMask.HasValue && versionBits.HasValue)
                 version = (version & ~versionMask.Value) | (versionBits.Value & versionMask.Value);
 
-#pragma warning disable 618
             var blockHeader = new BlockHeader
-#pragma warning restore 618
             {
                 Version = unchecked((int) version),
                 Bits = new Target(Encoders.Hex.DecodeData(BlockTemplate.Bits)),
@@ -337,6 +336,9 @@ namespace Miningcore.Blockchain.Bitcoin
                 BlockTime = DateTimeOffset.FromUnixTimeSeconds(nTime),
                 Nonce = nonce
             };
+
+            if(coin.HasAccumulatorCheckpoint)
+                blockHeader.AccumulatorCheckpoint = uint256.Parse(accumulatorCheckpointExtra.AccumulatorCheckpoint);
 
             return blockHeader.ToBytes();
         }
@@ -440,8 +442,8 @@ namespace Miningcore.Blockchain.Bitcoin
                 bs.ReadWrite(ref coinbase);
                 bs.ReadWrite(ref rawTransactionBuffer);
 
-                // // POS coins require a zero byte appended to block which the daemon replaces with the signature
-                if(isPoS && poolConfig.UseP2PK)
+                // POS coins require a zero byte appended to block which the daemon replaces with the signature
+                if (coin.HasBlockSignature)
                     bs.ReadWrite((byte) 0);
 
                 return stream.ToArray();
@@ -695,6 +697,9 @@ namespace Miningcore.Blockchain.Bitcoin
 
             if(coin.HasPayee)
                 payeeParameters = BlockTemplate.Extra.SafeExtensionDataAs<PayeeBlockTemplateExtra>();
+
+            if(coin.HasAccumulatorCheckpoint)
+                accumulatorCheckpointExtra = BlockTemplate.Extra.SafeExtensionDataAs<AccumulatorCheckpointExtra>();
 
             this.coinbaseHasher = coinbaseHasher;
             this.headerHasher = headerHasher;
