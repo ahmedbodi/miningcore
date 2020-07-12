@@ -6,7 +6,7 @@ namespace Miningcore.Blockchain.Bitcoin
 #pragma warning disable 618
     public class BlockHeader : NBitcoin.BlockHeader
     {
-        protected uint256 nAccumulatorCheckpoint;
+        protected uint256 nAccumulatorCheckpoint = null;
 
         public uint256 AccumulatorCheckpoint { get; set; }
 

@@ -338,10 +338,29 @@ namespace Miningcore.Blockchain.Bitcoin
                 Nonce = nonce
             };
 
+            Console.WriteLine("Creating Standard Block");
+            Console.WriteLine($"Version: {blockHeader.Version}");
+            Console.WriteLine($"Prev Block Hash: {blockHeader.HashPrevBlock}");
+            Console.WriteLine($"Merkle Root: {blockHeader.HashMerkleRoot}");
+            Console.WriteLine($"Time: {blockHeader.BlockTime}");
+            Console.WriteLine($"Bits: {blockHeader.Bits}");
+            Console.WriteLine($"Nonce: {blockHeader.Nonce}");
+            Console.WriteLine($"Accumulator Checkpoint: {blockHeader.AccumulatorCheckpoint}");
+            Console.WriteLine($"Hash: {blockHeader.ToBytes()}");
+
             if(coin.HasAccumulatorCheckpoint)
                 blockHeader.AccumulatorCheckpoint = uint256.Parse(accumulatorCheckpointExtra.AccumulatorCheckpoint);
 
-            Console.WriteLine(JsonConvert.SerializeObject(blockHeader));
+            Console.WriteLine("Creating PIVX POW Block");
+            Console.WriteLine($"Version: {blockHeader.Version}");
+            Console.WriteLine($"Prev Block Hash: {blockHeader.HashPrevBlock}");
+            Console.WriteLine($"Merkle Root: {blockHeader.HashMerkleRoot}");
+            Console.WriteLine($"Time: {blockHeader.BlockTime}");
+            Console.WriteLine($"Bits: {blockHeader.Bits}");
+            Console.WriteLine($"Nonce: {blockHeader.Nonce}");
+            Console.WriteLine($"Accumulator Checkpoint: {blockHeader.AccumulatorCheckpoint}");
+            Console.WriteLine($"Hash: {blockHeader.ToBytes()}");
+
             return blockHeader.ToBytes();
         }
 
