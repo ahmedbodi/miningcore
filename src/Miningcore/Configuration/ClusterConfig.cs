@@ -191,6 +191,9 @@ namespace Miningcore.Configuration
 
         [JsonProperty("hasBlockSignature")]
         public bool HasBlockSignature { get; set; }
+
+        [JsonProperty("isPOS")]
+        public bool IsProofOfStake { get; set; }
     }
 
     public enum EquihashSubfamily

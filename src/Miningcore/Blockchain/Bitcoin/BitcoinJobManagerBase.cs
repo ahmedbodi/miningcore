@@ -498,7 +498,7 @@ namespace Miningcore.Blockchain.Bitcoin
             if(validateAddressResponse == null || !validateAddressResponse.IsValid)
                 logger.ThrowLogPoolStartupException($"Daemon reports pool-address '{poolConfig.Address}' as invalid");
 
-            isPoS = difficultyResponse.Values().Any(x => x.Path == "proof-of-stake");
+            isPoS = true;
 
             // Create pool address script from response
             if(!isPoS || !poolConfig.UseP2PK){
