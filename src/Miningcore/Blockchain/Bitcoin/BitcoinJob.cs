@@ -34,6 +34,7 @@ using Miningcore.Time;
 using Miningcore.Util;
 using NBitcoin;
 using NBitcoin.DataEncoders;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Contract = Miningcore.Contracts.Contract;
 using Transaction = NBitcoin.Transaction;
@@ -340,6 +341,7 @@ namespace Miningcore.Blockchain.Bitcoin
             if(coin.HasAccumulatorCheckpoint)
                 blockHeader.AccumulatorCheckpoint = uint256.Parse(accumulatorCheckpointExtra.AccumulatorCheckpoint);
 
+            Console.WriteLine(JsonConvert.SerializeObject(blockHeader));
             return blockHeader.ToBytes();
         }
 

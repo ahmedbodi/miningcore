@@ -1,4 +1,24 @@
 {
+    "nestegg": {
+        "name": "NestEgg",
+        "symbol": "NEST",
+        "family": "bitcoin",
+        "headerHasher": {
+            "hash": "quark"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [ { "hash": "quark" } ]
+        },
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "hasMasterNodes": true,
+        "shareMultiplier": 256,
+        "hasAccumulatorCheckpoint": true,
+        "hasTxTime": true,
+        "hasBlockSignature": true
+    },
     "bitcoin": {
         "name": "Bitcoin",
         "symbol": "BTC",
@@ -38,18 +58,18 @@
     "freecash": {
         "name": "FreeCash",
         "symbol": "FCH",
-         "family": "bitcoin",
-         "coinbaseHasher": {
-              "hash": "sha256d"
-         },
+        "family": "bitcoin",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
         "headerHasher": {
             "hash": "sha256d"
         },
         "blockHasher": {
-         "hash": "reverse",
-         "args": [ { "hash": "sha256d" } ]
-         },
-        "hasCoinbaseDevReward":true,
+            "hash": "reverse",
+            "args": [ { "hash": "sha256d" } ]
+        },
+        "hasCoinbaseDevReward": true,
         "explorerBlockLink": "https://freecash.info/block?height=$height$",
         "explorerTxLink": "https://freecash.info/transaction?hash={0}",
         "explorerAccountLink": "https://freecash.info/address?address={0}"
@@ -68,7 +88,7 @@
             "hash": "reverse",
             "args": [ { "hash": "sha256d" } ]
         },
-        "hasCoinbasePayload" : true,
+        "hasCoinbasePayload": true,
         "explorerBlockLink": "https://devault.llama.network/block/$height$",
         "explorerTxLink": "https://devault.llama.network/tx/{0}",
         "explorerAccountLink": "https://devault.llama.network/address/{0}"
@@ -87,7 +107,7 @@
             "hash": "reverse",
             "args": [ { "hash": "sha256d" } ]
         },
-        "shareMultipler":4194304,
+        "shareMultipler": 4194304,
         "explorerBlockLink": "https://1explorer.sugarchain.org/block/$hash$",
         "explorerTxLink": "https://1explorer.sugarchain.org/tx/{0}",
         "explorerAccountLink": "https://1explorer.sugarchain.org/address/{0}"
@@ -106,7 +126,7 @@
             "hash": "reverse",
             "args": [ { "hash": "sha256d" } ]
         },
-        "shareMultipler":4194304,
+        "shareMultipler": 4194304,
         "explorerBlockLink": "https://1explorer.sugarchain.org/block/$hash$",
         "explorerTxLink": "https://1explorer.sugarchain.org/tx/{0}",
         "explorerAccountLink": "https://1explorer.sugarchain.org/address/{0}"
@@ -647,8 +667,8 @@
             "hash": "reverse",
             "args": [ { "hash": "x21s" } ]
         },
-        "hasFounderFee":true,
-        "isFounderPayeeMultisig":true,
+        "hasFounderFee": true,
+        "isFounderPayeeMultisig": true,
         "shareMultiplier": 256,
         "explorerBlockLink": "https://pgn-explorer.urgo.org/block/$height$",
         "explorerTxLink": "https://pgn-explorer.urgo.org/tx/{0}",
@@ -668,8 +688,8 @@
             "hash": "reverse",
             "args": [ { "hash": "x21s" } ]
         },
-        "hasFounderFee":true,
-        "hasMasterNodes":true,
+        "hasFounderFee": true,
+        "hasMasterNodes": true,
         "shareMultiplier": 256,
         "explorerBlockLink": "http://explorer.pigeoncoin.org/block/$hash$",
         "explorerTxLink": "http://explorer.pigeoncoin.org/tx/{0}",
