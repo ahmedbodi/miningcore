@@ -463,6 +463,7 @@ namespace Miningcore.Blockchain.Bitcoin
                 bs.ReadWrite(ref coinbase);
                 bs.ReadWrite(ref rawTransactionBuffer);
 
+                Console.WriteLine($"Coinbase Transaction: {coinbase.ToString()}");
                 // POS coins require a zero byte appended to block which the daemon replaces with the signature
                 if (coin.HasBlockSignature)
                     bs.ReadWrite((byte) 0);

@@ -16,8 +16,8 @@
         "hasMasterNodes": true,
         "shareMultiplier": 256,
         "hasAccumulatorCheckpoint": true,
-        "hasTxTime": true,
-        "hasBlockSignature": true
+        "hasTxTime": false,
+        "hasBlockSignature": false,
     },
     "bitcoin": {
         "name": "Bitcoin",
