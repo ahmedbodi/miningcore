@@ -338,29 +338,8 @@ namespace Miningcore.Blockchain.Bitcoin
                 Nonce = nonce
             };
 
-            Console.WriteLine("Creating Standard Block");
-            Console.WriteLine($"Version: {blockHeader.Version}");
-            Console.WriteLine($"Prev Block Hash: {blockHeader.HashPrevBlock}");
-            Console.WriteLine($"Merkle Root: {blockHeader.HashMerkleRoot}");
-            Console.WriteLine($"Time: {blockHeader.BlockTime}");
-            Console.WriteLine($"Bits: {blockHeader.Bits}");
-            Console.WriteLine($"Nonce: {blockHeader.Nonce}");
-            Console.WriteLine($"Accumulator Checkpoint: {blockHeader.AccumulatorCheckpoint}");
-            Console.WriteLine($"Hash: {blockHeader.ToBytes()}");
-
             if(coin.HasAccumulatorCheckpoint)
                 blockHeader.AccumulatorCheckpoint = uint256.Parse(accumulatorCheckpointExtra.AccumulatorCheckpoint);
-
-            Console.WriteLine("Creating PIVX POW Block");
-            Console.WriteLine($"Version: {blockHeader.Version}");
-            Console.WriteLine($"Prev Block Hash: {blockHeader.HashPrevBlock}");
-            Console.WriteLine($"Merkle Root: {blockHeader.HashMerkleRoot}");
-            Console.WriteLine($"Time: {blockHeader.BlockTime}");
-            Console.WriteLine($"Bits: {blockHeader.Bits}");
-            Console.WriteLine($"Nonce: {blockHeader.Nonce}");
-            Console.WriteLine($"Accumulator Checkpoint: {blockHeader.AccumulatorCheckpoint}");
-            Console.WriteLine($"Hash: {blockHeader.ToBytes()}");
-
             return blockHeader.ToBytes();
         }
 
@@ -463,7 +442,7 @@ namespace Miningcore.Blockchain.Bitcoin
                 bs.ReadWrite(ref coinbase);
                 bs.ReadWrite(ref rawTransactionBuffer);
 
-                Console.WriteLine($"Coinbase Transaction: {coinbase.ToString()}");
+                Console.WriteLine($"Coinbase Transaction: {coinbase.ToHexString()}");
                 // POS coins require a zero byte appended to block which the daemon replaces with the signature
                 if (coin.HasBlockSignature)
                     bs.ReadWrite((byte) 0);
