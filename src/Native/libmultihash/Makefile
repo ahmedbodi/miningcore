@@ -19,7 +19,10 @@ OBJECTS = bcrypt.o blake.o blake2s.o c11.o dcrypt.o fresh.o lane.o \
     equi/crypto/sha1.o equi/crypto/sha512.o equi/crypto/sha256.o \
     equi/crypto/hmac_sha256.o equi/crypto/equihash.o equi/crypto/ripemd160.o \
     equi/equihashverify.o \
-    libethash/internal.o libethash/io.o libethash/io_posix.o libethash/sha3.o
+    libethash/internal.o libethash/io.o libethash/io_posix.o libethash/sha3.o \
+    kawpow/ethash/ethash.o kawpow/ethash/managed.o kawpow/ethash/primes.o \
+    kawpow/ethash/progpow.o kawpow/include/hash_types.o kawpow/keccak/keccak.o \
+    kawpow/ethash/keccakf800.o keccak/ethash/keccakf1600.o
 
 all: $(TARGET)
 
